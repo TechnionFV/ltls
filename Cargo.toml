@@ -1,0 +1,9 @@
+[package]
+name = "ltls"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rust-formal-verification = { git = "https://github.com/TechnionFV/rust-formal-verification.git", rev = "d9aa66d75a1368ae098d07a46d7dbe19911bfee5" }
