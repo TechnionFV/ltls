@@ -23,3 +23,12 @@ cargo run --release <AIGER file>
 ## Notes: 
 
 You might need to have Clang on your machine.
+
+## Running offline
+
+Here is some information I found about downloading the rust compiler and installing offline:
+https://forge.rust-lang.org/infra/other-installation-methods.html
+Furthermore, some information that might be helpful in the case when you want to use cargo offline:
+https://www.reddit.com/r/rust/comments/137hmah/rust_offline/
+More specifically, running with 'cargo run --release --offline'
+
