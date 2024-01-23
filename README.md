@@ -47,6 +47,29 @@ cargo build --release
 
 Then you'll find the executable under `./target/release/ltls`
 
+## Using different C++ compilers
+
+To compile the project you need to have a C++ compiler in order to compile CaDiCal.
+To set the compiler certain environment variables must be set before trying to compile.
+
+The C++ standard library may be linked to the crate target. 
+By default it's:
+1. `libc++` for macOS, FreeBSD, and OpenBSD
+2. `libc++_shared` for Android, nothing for MSVC
+3. `libstdc++` for anything else. 
+It can be changed by setting the `CXXSTDLIB` environment variable.
+
+### Using g++
+
+Run these commands in order.
+```
+cargo clean
+unset CRATE_CC_NO_DEFAULTS
+unset CXXFLAGS
+unset CXXSTDLIB
+export CXX=/usr/bin/g++
+cargo test
+```
 
 
 
