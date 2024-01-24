@@ -38,7 +38,7 @@ checksum = "ed570934406eb16438a4e976b1b4500774099c13b8cb96eec99f620f05090ddf"
 [[package]]
 name = "cadical"
 version = "0.1.14"
-source = "git+https://github.com/sirandreww/cadical-rs.git#b65898198835223e6e5fb37004651f9aed3e15c8"
+source = "git+https://github.com/sirandreww/cadical-rs.git?rev=958af492fc6be6d9e5dbe8875b9fb31927c56249#958af492fc6be6d9e5dbe8875b9fb31927c56249"
 dependencies = [
  "cc",
 ]
@@ -369,7 +369,7 @@ checksum = "c08c74e62047bb2de4ff487b251e4a92e24f48745648451635cec7d591162d9f"
 [[package]]
 name = "rust-formal-verification"
 version = "0.1.11"
-source = "git+https://github.com/TechnionFV/rust-formal-verification.git?rev=d9aa66d75a1368ae098d07a46d7dbe19911bfee5#d9aa66d75a1368ae098d07a46d7dbe19911bfee5"
+source = "git+https://github.com/TechnionFV/rust-formal-verification.git?rev=453fcf32fa47072dbe77d661552f585d117f982e#453fcf32fa47072dbe77d661552f585d117f982e"
 dependencies = [
  "cadical",
  "comfy-table",
