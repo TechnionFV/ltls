@@ -6,4 +6,4 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rust-formal-verification = { git = "https://github.com/TechnionFV/rust-formal-verification.git", rev = "79b1917ec63049ad066ca13215ab23bffdf2065a" }
+rust-formal-verification = { git = "https://github.com/TechnionFV/rust-formal-verification.git", rev = "453fcf32fa47072dbe77d661552f585d117f982e" }
