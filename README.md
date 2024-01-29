@@ -47,7 +47,7 @@ cargo build --release
 
 Then you'll find the executable under `./target/release/ltls`
 
-## Using different C++ compilers
+## Using different C++ compilers and linkers
 
 To compile the project you need to have a C++ compiler in order to compile CaDiCal.
 To set the compiler certain environment variables must be set before trying to compile.
@@ -59,7 +59,7 @@ By default it's:
 3. `libstdc++` for anything else. 
 It can be changed by setting the `CXXSTDLIB` environment variable.
 
-### Using g++
+### Using c++
 
 Run these commands in order.
 ```
@@ -67,9 +67,63 @@ cargo clean
 unset CRATE_CC_NO_DEFAULTS
 unset CXXFLAGS
 unset CXXSTDLIB
+unset RUSTFLAGS
 export CXX=/usr/bin/g++
 cargo test
 ```
 
+### Using Clang
+
+First you should get the C++ library that works with Clang using one of these commands (not sure which specific one, but the first should work):
+```
+sudo apt install libc++-dev
+sudo apt install libc++abi-dev
+sudo apt install libstdc++-dev
+```
+
+Then run these commands in order:
+```
+cargo clean
+unset CRATE_CC_NO_DEFAULTS
+unset CXXFLAGS
+unset CXXSTDLIB
+unset RUSTFLAGS
+export CXX=clang++
+cargo test
+```
+
+### Using LLD
+
+First get the linker using:
+```
+sudo apt install lld
+```
+
+Then run these commands in order:
+```
+cargo clean
+unset CRATE_CC_NO_DEFAULTS
+unset CXXFLAGS
+unset CXXSTDLIB
+export RUSTFLAGS="-C link-arg=-fuse-ld=lld"
+export CXX=g++
+cargo test
+```
+
+### Using g++ for linking
+
+There are situations, when running with a different g++ compiler than the one that `PATH` points to where the C++ standard library would not be found.
+To fix this, you need to tell rust compiler to link with the same version directly.
+
+Run these commands in order:
+```
+cargo clean
+unset CRATE_CC_NO_DEFAULTS
+unset CXXFLAGS
+unset CXXSTDLIB
+export RUSTFLAGS="-C linker=g++"
+export CXX=g++
+cargo test
+```
 
 
