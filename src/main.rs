@@ -20,7 +20,10 @@ use rust_formal_verification::{
         property_directed_reachability::PropertyDirectedReachabilityParameters,
         LongTraceLemmaSearch, ProofResult, PropertyDirectedReachability,
     },
-    models::{AndInverterGraph, Circuit, FiniteStateTransitionSystem, LiteralWeights},
+    models::{
+        finite_state_transition_system::FiniteStateTransitionSystemError, AndInverterGraph,
+        Circuit, FiniteStateTransitionSystem, LiteralWeights,
+    },
     solvers::sat::incremental::CaDiCalSolver,
 };
 use std::env;
@@ -65,7 +68,29 @@ fn run_file(aig_file_path: &str, extra_verbose: bool) {
     println!("Making Transition System...");
     let assume_output_is_bad = circuit.get_number_of_bad_wires() == 0;
     let mut fin_state =
-        FiniteStateTransitionSystem::new(circuit.clone(), assume_output_is_bad).unwrap();
+        match FiniteStateTransitionSystem::new(circuit.clone(), assume_output_is_bad) {
+            Ok(r) => r,
+            Err(e) => match e {
+                FiniteStateTransitionSystemError::EmptyCircuit => {
+                    println!("Empty circuit, nothing to prove.");
+                    return;
+                }
+                FiniteStateTransitionSystemError::MaxWireTooHigh => {
+                    println!("Max wire too high, cannot house circuit.");
+                    return;
+                }
+                FiniteStateTransitionSystemError::BadWireIsConstantOne => {
+                    println!("Bad wire is constant one, that means that the problem is Unsafe.");
+                    return;
+                }
+                FiniteStateTransitionSystemError::ConstraintWireIsConstantZero => {
+                    println!(
+                        "Constraint wire is constant zero, that means that the problem is Safe."
+                    );
+                    return;
+                }
+            },
+        };
     println!("Finished making Transition System...");
 
     println!(
