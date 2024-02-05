@@ -13,14 +13,27 @@ https://www.rust-lang.org/learn/get-started
 
 The sole dependency of this repo is https://github.com/TechnionFV/rust-formal-verification.git
 
-Make sure you can access it since it is a private repo.
+Make sure you can access it since it is a private repo, this can be accomplished by asking me for access.
 
-### Step 3: Run
+After getting access you should be cache your github credentials in your terminal:
+https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git
+
+You can also cache your credentials in an unsecure manner by running 
+```
+git config --global credential.helper store
+git pull
+```
+Then inserting your username and a one-time-password that can be requested in 
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic
+
+### Step 3: Build
 
 The best performance is reached when running in `release` mode, so the command to run this program would be:
 ```
 cargo run --release <AIGER file>
 ```
+
+This command fetches all the dependencies and compiles the code, if step 2 is not done (you were not granted access OR you did not cache your credentials) this command will fail.
 
 ## Notes: 
 
