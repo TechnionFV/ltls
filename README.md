@@ -15,10 +15,14 @@ The sole dependency of this repo is https://github.com/TechnionFV/rust-formal-ve
 
 Make sure you can access it since it is a private repo, this can be accomplished by asking me for access.
 
+#### Option 1
+
 After getting access you should be cache your github credentials in your terminal:
 https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git
 
-You can also cache your credentials in an unsecure manner by running 
+#### Option 2
+
+You can also cache your credentials temporarily by running 
 ```
 git config --global credential.helper store
 git pull
